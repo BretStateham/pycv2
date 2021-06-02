@@ -1,25 +1,21 @@
 import cv2
 import numpy as np
 
-img = cv2.imread("Resources/lena.png")
+img = cv2.imread("Resources/lambo.png")
+print(img.shape)
 
-imgGray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-imgBlur = cv2.GaussianBlur(imgGray,(7,7),0)
-imgCanny = cv2.Canny(img,150,200)
+imgResize = cv2.resize(img,(1000,500))
+print(imgResize.shape)
 
+imgCropped = img[0:200,200:500]
+print(imgCropped.shape)
 
-kernel = np.ones((3,3), np.uint8)
+cv2.imshow("Image",img)
+cv2.imshow("Resized Image",imgResize)
+cv2.imshow("Cropped Image",imgCropped)
 
-imgDialation = cv2.dilate(imgCanny,kernel, iterations=1)
-
-imgEroded = cv2.erode(imgDialation,kernel, iterations=1)
-
-cv2.imshow("Grayscale",imgGray)
-cv2.imshow("Blur",imgBlur)
-cv2.imshow("Canny",imgCanny)
-cv2.imshow("Dialation",imgDialation)
-cv2.imshow("Eroded",imgEroded)
 
 cv2.waitKey(0)
+
 
 
