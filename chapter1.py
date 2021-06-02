@@ -2,7 +2,13 @@ import cv2
 
 print("Package Imported")
 
-img = cv2.imread("Resources/lena.png")
+cap = cv2.VideoCapture("Resources/test_video.mp4")
 
-cv2.imshow("Output",img)
-cv2.waitKey(0)
+while True:
+    success, img = cap.read()
+    cv2.imshow("Video",img)
+    if cv2.waitKey(30) & 0xFF == ord('q'):
+        break
+
+
+
